@@ -8,7 +8,7 @@ The script can execute stored procedures, it has looping logic, conditional (CAS
 It’s really a learning tool but it may have some real life uses also. You can modify application functionality on the fly just by changing XML. You could even write a program that would generate XML for you that would then feed other systems. Quite cool! 
 
 Here is a sample script:
-
+```
 <ROOT>
   <CMD type="variable">
     <VAR name="$var1$" type="literal" datatype="char">MyValue</VAR>
@@ -30,14 +30,15 @@ Here is a sample script:
     </FOR>  
   </CMD>
 </ROOT>         
-
+```
 That XML, when run through my script interpreter, will output:
+```
 MyValue is 25/08/2006 15:06:59
 MyValue is 25/08/2006 15:06:59
 MyValue is 25/08/2006 15:06:59
 MyValue is 25/08/2006 15:06:59
 MyValue is 25/08/2006 15:06:59
-
+```
 
 The script is run sequentially. 
 
@@ -59,27 +60,27 @@ If you are going to use this, think about making it an invoker’s rights packag
 
 If you’re curious, the code for PL/XML covers:
 
-Package Variable
-Private Package Variable
-Record Types
-Tables of Records
-Associative Arrays
-Procedure Overloading
-XMLType
-XPath
-XSLT
-LOOP
-FOR LOOP
-CASE
-Dynamic SQL
-Data Driven Programming
-String Manipulation
-Recursive Programming
+- Package Variable
+- Private Package Variable
+- Record Types
+- Tables of Records
+- Associative Arrays
+- Procedure Overloading
+- XMLType
+- XPath
+- XSLT
+- LOOP
+- FOR LOOP
+- CASE
+- Dynamic SQL
+- Data Driven Programming
+- String Manipulation
+- Recursive Programming
 
 All of that in about 500 lines of code (including white space and comments). This was really fun to write. Altogether it took about 4 hours. Here’s a more comprehensive example that shows a lot of the functionality. 
 
 This XML:
-
+```
 <ROOT>
   <CMD type="for">
     <FOR from="1" to="3">
@@ -161,8 +162,9 @@ This XML:
     </PROC>
   </CMD>
 </ROOT>   
-      
+```      
 Given these test procedures:
+```
 CREATE OR REPLACE PROCEDURE test_proc( 
             parm1 IN VARCHAR2, 
             parm2 IN VARCHAR2 ) 
@@ -186,9 +188,11 @@ IS
   BEGIN   
     RETURN sysdate;
   END;
-  
+```  
+
 Produces this output:
 
+```
 Out: MyValuedef
 Out: MyValuedef
 Out: MyValuedef
@@ -201,5 +205,6 @@ Hello World!
 
 Condition: 1=1
 Data: MyValue|def25-AUG-0625-AUG-06
+```
 
 I’m releasing this as open source so you can use it or abuse it as you see fit. 
